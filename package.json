@@ -1,0 +1,30 @@
+{
+  "name": "hb",
+  "version": "1.0.0",
+  "description": "Program for emulating the launch of games on Steam",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "add": "node user.js"
+  },
+  "author": "Roman Lisin (AspectUnk)",
+  "license": "MIT",
+  "dependencies": {
+    "file-system": "^2.2.2",
+    "readline-sync": "^1.4.10",
+    "steam-user": "^4.12.5"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AspectUnk/steam_hourboostr.git"
+  },
+  "keywords": [
+    "steam",
+    "hourboost",
+    "hourboostr"
+  ],
+  "bugs": {
+    "url": "https://github.com/AspectUnk/steam_hourboostr/issues"
+  },
+  "homepage": "https://github.com/AspectUnk/steam_hourboostr#readme"
+}
