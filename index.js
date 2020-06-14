@@ -1,20 +1,31 @@
-const fs = require("fs");
-const Account = require("./account");
+const steamAccount = require('./account');
+const path         = require('path');
+const fs           = require('fs');
 
-let accounts = [];
-let config = JSON.parse(fs.readFileSync('config.json').toString());
+console.log('(>) Created by AspectUnk <https://vk.com/id9830484>');
 
-if (config.accounts.length === 0) {
-    console.log('(!) There are no accounts to run');
-    process.exit(0);
-}
+fs.readFile(path.join(__dirname, 'data', 'accounts.json'), 'utf-8', (err, data) => {
+    if (err)
+    {
+        throw err;
+    }
 
-config.accounts.forEach((account, index) => {
-    accounts.push(new Account(index, account.login, account.password, account.loginkey, account.games));
-});
+    let config = JSON.parse(data);
+    let accounts = [];
 
-setInterval(() => {
-    accounts.forEach((account) => {
-        account.restart();
+    if (config.accounts.length < 1)
+    {
+        console.log('(!) There are no accounts to run');
+        process.exit(0);
+    }
+
+    config.accounts.forEach((account, index) => {
+        accounts.push(new steamAccount(index, account.login, account.password, account.loginkey, account.games));
     });
-}, 1800000);
+
+    setInterval(() => {
+        accounts.forEach((account) => {
+            account.restart();
+        });
+    }, 1800000);
+});
